@@ -49,8 +49,11 @@ function playerMovement() {
 }
 
 function jump() {
-    if (y === 25 && (x >= 25 && x <= 725))
-        y += moveY
+    setInterval(() => {
+        if (y !== 425) {
+            y += moveY;
+        }
+    }, 1);
     console.log('---->')
 }
 
