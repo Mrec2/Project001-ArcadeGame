@@ -1,12 +1,59 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const animation = window.requestAnimationFrame
+//objeto global
+const Game = {
+    canvas: undefined,
+    ctx: undefined,
+    animation: undefined,
+    width: 800,
+    height: 500,
+    widthGame: undefined,
+    heightGame: undefined,
+    player: undefined,
+    playerWidth: 40,
+    playerHeight: 40,
+    obstacles: [],
+    coins: [],
+    x: 25,
+    y: 25,
+    moveX: 10,
+    moveY: 10,
+
+    init() {
+
+        this.canvas = document.getElementById('canvas');
+        this.ctx = canvas.getContext('2d');
+        var requestAnimationFrame = window.requestAnimationFrame;
+        // this.start();
+
+        this.start();
+    },
+
+    setDimension() {
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
+    },
+
+    start() {
+        console.log("inicio start");
+
+        this.remove();
+        let drawRectangle = new drawAll();
+        drawRectangle.drawRectangle(50, 50, 700, 400);
+        console.log("Errorrrrrrrrrrrrrrrrrr");
+        requestAnimationFrame(start);
+
+    },
+
+    remove() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        console.log("entra en remove")
+
+    }
+
+}
 
 
-const canvasWidth = 800;
-const canvasHeight = 500;
-let x = 25;
-let y = 25;
+/*
+
 let isMoving = 'normal' // normal, topToBottom, bottomToTop, leftToRight, rightToLeft
 
 const moveX = 10;
@@ -22,8 +69,7 @@ coin.src = './img/coin.png'
 
 function game() {
     remove();
-    ctx.strokeStyle = 'white';
-    ctx.strokeRect(50, 50, 700, 400);
+
     ctx.drawImage(img, x, y, 40, 40);
     //ctx.drawImage(coin, 100, 100, 20, 20);
     drawCoins()
@@ -150,7 +196,7 @@ function obstacles() {
 
 //----------array de objetos: coins
 /* let numan = [{
-    //numan1 
+    //numan1
     name: "coin1",
     x: 100,
     y: 100
@@ -165,6 +211,8 @@ function obstacles() {
     x: 200,
     y: 200
 }] */
+
+/*
 
 function drawCoins() {
     const coin = new Image();
@@ -186,6 +234,7 @@ function drawCoins() {
     ctx.drawImage(coin, 705, 350, 20, 20);
 }
 
+*/
 
 //-------- borrador coins
 /* function clearFirstCoin() {
