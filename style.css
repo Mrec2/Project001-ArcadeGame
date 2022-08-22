@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Pinstripe&family=Silkscreen&display=swap');
+
+/* font-family: 'Aboreto', cursive;
+font-family: 'Alumni Sans Pinstripe', sans-serif;
+font-family: 'Silkscreen', cursive; */
+
 
 body,
 html {
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 
 canvas {
@@ -14,11 +19,25 @@ canvas {
 
 .canvas-contain {
     width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-direction: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+}
+
+.timer {
+    padding: 0 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    margin: 0 auto;
-    padding-top: 100px;
+}
+
+.canvas-contain h1 {
+    color: white;
+    font-family: 'Silkscreen', cursive;
+    font-size: 16px;
 }
 
 .ob-container {
@@ -27,20 +46,50 @@ canvas {
     background-color: turquoise;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: greenyellow;
     font-family: 'Aboreto', cursive;
     font-size: 30px;
 }
 
+.ob-container h1 {
+    color: coral;
+}
+
+.ob-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ob-container h6 {
+    font-size: 16px;
+}
+
+/* .ob-container h1 {
+    padding: 0;
+    margin: 0;
+} */
+
+.ob-container h6 span {
+    font-size: 12px;
+}
+
+.names {
+    font-size: 22px !important;
+}
+
 .ob-container a {
-    padding: 15px;
-    color: blue;
-    border: 1px solid blue;
+    padding: 15px 40px;
+    color: coral;
+    border: 1px solid coral;
     border-radius: 5px;
     text-decoration: none;
     font-size: 15px;
+    font-family: 'Silkscreen', cursive;
+    transition: all .5s ease;
 }
 
 .ob-container a:hover {
@@ -51,5 +100,6 @@ canvas {
     border-radius: 5px;
     text-decoration: none;
     font-size: 15px;
+    cursor: pointer;
     transition: all .5s ease;
 }
