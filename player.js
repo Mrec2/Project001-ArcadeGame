@@ -2,8 +2,14 @@ class player {
     constructor() {
         this.y = 25;
         this.x = 25;
-        moveX = 10;
-        moveY = 10;
+        this.moveX = 10;
+        this.moveY = 10;
+    }
+
+    draw(x, y, playerWidth, playerHeight) {
+        const img = new Image();
+        img.src = './img/player.png'
+        Game.ctx.drawImage(img, this.x, this.y, Game.playerWidth, Game.playerHeight);
     }
 
     playerMovement() {

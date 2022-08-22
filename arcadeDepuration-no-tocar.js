@@ -169,7 +169,7 @@ function obstacles() {
 function drawCoins() {
     const coin = new Image();
     coin.src = './img/coin.png'
-    ctx.drawImage(coin, 75, 100, 20, 20);
+    // ctx.drawImage(coin, posX, posY, width, height);
     ctx.drawImage(coin, 280, 150, 20, 20);
     ctx.drawImage(coin, 330, 150, 20, 20);
     ctx.drawImage(coin, 380, 150, 20, 20);
