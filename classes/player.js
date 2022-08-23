@@ -11,6 +11,8 @@ class Player {
         this.isMoving = "normal";
         this.moveX = 10;
         this.moveY = 10;
+        this.boostMoveX = 20;
+        this.boostMoveY = 20;
 
     }
 
@@ -23,16 +25,16 @@ class Player {
     playerMovement() {
 
         if (this.isMoving === 'topToBottom') {
-            this.y += this.moveY;
+            this.y += this.boostMoveY;
         }
         if (this.isMoving === 'bottomToTop') {
-            this.y -= this.moveY;
+            this.y -= this.boostMoveY;
         }
         if (this.isMoving === 'leftToRight') {
-            this.x += this.moveX;
+            this.x += this.boostMoveX;
         }
         if (this.isMoving === 'rightToLeft') {
-            this.x -= this.moveX;
+            this.x -= this.boostMoveX;
         }
         if (this.isMoving === 'normal') {
             if (this.y === 25) {
@@ -61,17 +63,16 @@ class Player {
 
         console.log("entra en movement reverse");
         if (this.isMoving === 'topToBottom') {
-            this.y += this.moveY;
-
+            this.y += this.boostMoveY
         }
         if (this.isMoving === 'bottomToTop') {
-            this.y -= this.moveY;
+            this.y -= this.boostMoveY;
         }
         if (this.isMoving === 'leftToRight') {
-            this.x += this.moveX;
+            this.x += this.boostMoveX;
         }
         if (this.isMoving === 'rightToLeft') {
-            this.x -= this.moveX;
+            this.x -= this.boostMoveX;
         }
         if (this.isMoving === 'normal') {
             if (this.x === 25) {
