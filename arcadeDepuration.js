@@ -1,29 +1,46 @@
 //objeto global
 const Game = {
+    //---> canvas
     canvas: undefined,
     ctx: undefined,
-    animation: undefined,
+    interval: undefined,
     width: 800,
     height: 500,
     widthGame: undefined,
     heightGame: undefined,
+    //---> Timer
+    counter: 0,
+    secs: 120,
+    chrono: undefined,
+    //---> player
     player: undefined,
+    playerImg: 'img/player2.png',
     playerWidth: 40,
     playerHeight: 40,
+    isMoving: "normal",
+    //--->obstacles
     obstacles: [],
+    obstacleX: undefined,
+    obstacleY: undefined,
+    obstacleWidth: undefined,
+    obstacleHeight: undefined,
+    //--->levels
+    levelWidth: undefined,
+    levelHeight: undefined,
+    levelX: undefined,
+    levelY: undefined,
+    level: undefined,
+    //--->coins
+
     coins: [],
-    x: 25,
-    y: 25,
-    moveX: 10,
-    moveY: 10,
+    coinImg: 'img/coin.png',
+    coinWidth: undefined,
+    coinHeight: undefined,
 
     init() {
-
         this.canvas = document.getElementById('canvas');
         this.ctx = canvas.getContext('2d');
-        var requestAnimationFrame = window.requestAnimationFrame;
-        // this.start();
-
+        this.requestAnimationFrame = window.requestAnimationFrame;
         this.start();
     },
 
@@ -32,25 +49,116 @@ const Game = {
         this.canvas.height = this.height;
     },
 
-    start() {
-        console.log("inicio start");
+    remove() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    },
 
-        this.remove();
-        let drawRectangle = new drawAll();
-        drawRectangle.drawRectangle(50, 50, 700, 400);
-        console.log("Errorrrrrrrrrrrrrrrrrr");
-        requestAnimationFrame(start);
+    start() {
+
+        this.createAll()
+        this.createInitialCoins();
+        this.createObstacles()
+
+        this.interval = setInterval(() => {
+            this.counter++;
+            this.timer();
+            console.log(this.counter)
+            if (this.counter === 67) {
+                this.secs -= 1;
+                this.counter = 0;
+                console.log("entra en if de counter");
+            }
+
+            console.log(this.secs);
+            this.remove();
+            this.drawAll();
+            this.player.playerMovementReverse();
+            this.checkCollision()
+            this.gameOver();
+        }, 15);
+    },
+    // drawRectangle(x, y, width, height) {
+    //     this.ctx.strokeStyle = 'black';
+    //     this.ctx.strokeRect(x, y, width, height);
+    // },
+
+    // drawImage(x, y, width, height) {
+    //     const imgPlayer = new Image();
+    //     img.src = './img/player.png'
+    //     this.ctx.drawImage(imgPlayer, x, y, width, height);
+    // },
+
+    createAll() {
+        this.level = new Levels(50, 50, 700, 400, this.ctx);
+        this.player = new Player(this.playerImg, this.ctx);
+    },
+
+    createObstacles() {
+        this.obstacles.push(new Obstacles(100, 250, 250, 250, this.ctx))
+        this.obstacles.push(new Obstacles(550, 250, 700, 250, this.ctx))
+        this.obstacles.push(new Obstacles(400, 300, 400, 400, this.ctx))
+        this.obstacles.push(new Obstacles(400, 100, 400, 200, this.ctx))
+    },
+
+    createInitialCoins() {
+        console.log("entra en createInitialCoins");
+        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 100, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 330, 150, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 380, 150, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 280, 150, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 430, 150, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 480, 150, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 100, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 350, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 280, 320, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 330, 320, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 380, 320, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 430, 320, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 480, 320, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 350, 20, 20));
+
 
     },
 
-    remove() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        console.log("entra en remove")
+    drawAll() {
+        console.log("entra en drawAll")
+        this.level.draw()
+        this.player.draw()
+        this.coins.forEach(e => {
+            e.draw()
+        });
+        this.obstacles.forEach(e => {
+            e.draw()
+        });
+    },
 
+    gameOver() {
+        if (this.secs === -1) {
+            alert("You lose");
+        }
+    },
+
+    timer() {
+        this.chrono = document.getElementById("chrono");
+        this.chrono.innerHTML = this.secs.toString();
+    },
+
+    checkCollision() {
+        // playerX, playerY === coinX
     }
+
+
 
 }
 
+document.addEventListener('keydown', (e) => {
+    switch (e.keyCode) {
+        case 32:
+            Game.player.jump();
+            this.player.playerMovement()
+            break;
+    }
+})
 
 /*
 
