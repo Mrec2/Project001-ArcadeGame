@@ -18,6 +18,7 @@ const Game = {
     playerWidth: 40,
     playerHeight: 40,
     isMoving: "normal",
+    clockWise: true,
     //--->obstacles
     obstacles: [],
     obstacleX: undefined,
@@ -72,7 +73,7 @@ const Game = {
             console.log(this.secs);
             this.remove();
             this.drawAll();
-            this.player.playerMovementReverse();
+            this.clockWise ? this.player.playerMovement() : this.player.playerMovementReverse()
             this.checkCollision()
             this.gameOver();
         }, 15);
@@ -155,9 +156,9 @@ document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
         case 32:
             Game.player.jump();
-            this.player.playerMovement()
             break;
     }
+    Game.clockWise ? Game.clockWise = false : Game.clockWise = true
 })
 
 /*
