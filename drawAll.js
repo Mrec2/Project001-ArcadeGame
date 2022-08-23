@@ -7,7 +7,7 @@ class drawAll {
     }
 
     drawRectangle(x, y, width, height) {
-        Game.ctx.strokeStyle = 'white';
+        Game.ctx.strokeStyle = 'black';
         Game.ctx.strokeRect(x, y, width, height);
     }
 

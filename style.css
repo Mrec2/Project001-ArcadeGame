@@ -12,8 +12,8 @@ html {
 }
 
 canvas {
-    border: 1px solid black;
-    background-color: green;
+    border: 1px solid #ffe191;
+    background-color: #ffe191;
     margin: 0 auto;
 }
 
@@ -23,7 +23,10 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: black;
+    background-image: url(./img/bg-index.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .timer {
@@ -35,7 +38,7 @@ canvas {
 }
 
 .canvas-contain h1 {
-    color: white;
+    color: black;
     font-family: 'Silkscreen', cursive;
     font-size: 16px;
 }
@@ -43,7 +46,10 @@ canvas {
 .ob-container {
     width: 100vw;
     height: 100vh;
-    background-color: turquoise;
+    background-image: url(./img/bg-onboard.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -55,6 +61,18 @@ canvas {
 
 .ob-container h1 {
     color: coral;
+    margin: 10px;
+}
+
+.ob-container h2 {
+    color: coral;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.ob-container h2 span {
+    color: black;
 }
 
 .ob-container div {
@@ -66,6 +84,11 @@ canvas {
 
 .ob-container h6 {
     font-size: 16px;
+    border: 2px solid black;
+    padding: 10px 30px;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
 }
 
 /* .ob-container h1 {
@@ -84,7 +107,7 @@ canvas {
 .ob-container a {
     padding: 15px 40px;
     color: coral;
-    border: 1px solid coral;
+    border: 2px solid coral;
     border-radius: 5px;
     text-decoration: none;
     font-size: 15px;
@@ -93,10 +116,10 @@ canvas {
 }
 
 .ob-container a:hover {
-    background-color: greenyellow;
+    background-color: white;
     padding: 15px;
-    color: turquoise;
-    border: 1px solid greenyellow;
+    color: black;
+    border: 2px solid black;
     border-radius: 5px;
     text-decoration: none;
     font-size: 15px;
