@@ -1,19 +1,16 @@
 class Obstacles {
-    constructor(startX, startY, endX, endY, ctx) {
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
+    constructor(x, y, width, height, ctx) {
+        this.obsX = x;
+        this.obsY = y;
+        this.obsWidth = width;
+        this.obsHeight = height;
         this.ctx = ctx;
+        this.crash = false;
     }
 
     draw() {
-        this.ctx.strokeStyle = 'red';
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.startX, this.startY);
-        this.ctx.lineTo(this.endX, this.endY);
-        this.ctx.lineWidth = 4;
-        this.ctx.stroke();
+        this.ctx.fillStyle = 'red';
+        this.ctx.fillRect(this.obsX, this.obsY, this.obsWidth, this.obsHeight);
     }
 }
 

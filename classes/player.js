@@ -1,56 +1,58 @@
 class Player {
     constructor(img, ctx) {
-        this.y = 25;
-        this.x = 25;
-        this.moveX = 10;
-        this.moveY = 10;
-
         this.ctx = ctx
-        this.image = new Image();
-        this.image.src = img;
-        this.isMoving = "normal";
-        this.moveX = 10;
-        this.moveY = 10;
-        this.boostMoveX = 20;
-        this.boostMoveY = 20;
+
+        this.y = 25
+        this.x = 25
+
+        this.velocityX = 10
+        this.velocityY = 10
+
+        this.image = new Image()
+        this.image.src = img
+        this.isMoving = "normal"
+        this.width = 40
+        this.height = 40
+        this.boostX = 20
+        this.boostY = 20
 
     }
 
     draw() {
-        /*         console.log('DESDE PLAYER DRAW')
-                console.log(this.image.src) */
-        this.ctx.drawImage(this.image, this.x, this.y, Game.playerWidth, Game.playerHeight);
+        // this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+
     }
 
     playerMovement() {
-
+        // SWITCH 
         if (this.isMoving === 'topToBottom') {
-            this.y += this.boostMoveY;
+            this.y += this.boostY;
         }
-        if (this.isMoving === 'bottomToTop') {
-            this.y -= this.boostMoveY;
+        else if (this.isMoving === 'bottomToTop') {
+            this.y -= this.boostY;
         }
-        if (this.isMoving === 'leftToRight') {
-            this.x += this.boostMoveX;
+        else if (this.isMoving === 'leftToRight') {
+            this.x += this.boostX;
         }
-        if (this.isMoving === 'rightToLeft') {
-            this.x -= this.boostMoveX;
+        else if (this.isMoving === 'rightToLeft') {
+            this.x -= this.boostX;
         }
-        if (this.isMoving === 'normal') {
+        else if (this.isMoving === 'normal') {
             if (this.y === 25) {
-                this.x += this.moveX;
+                this.x += this.velocityX;
             }
             if (this.x === 725) {
                 this.x === 725;
-                this.y += this.moveY
+                this.y += this.velocityY
             }
             if (this.y === 425) {
                 this.y === 425;
-                this.x -= this.moveX
+                this.x -= this.velocityX
             }
             if (this.x === 25) {
                 this.x === 25;
-                this.y -= this.moveY
+                this.y -= this.velocityY
             }
 
         }
@@ -60,35 +62,34 @@ class Player {
     }
 
     playerMovementReverse() {
-
-        console.log("entra en movement reverse");
+        // switch
         if (this.isMoving === 'topToBottom') {
-            this.y += this.boostMoveY
+            this.y += this.boostY
         }
         if (this.isMoving === 'bottomToTop') {
-            this.y -= this.boostMoveY;
+            this.y -= this.boostY;
         }
         if (this.isMoving === 'leftToRight') {
-            this.x += this.boostMoveX;
+            this.x += this.boostX;
         }
         if (this.isMoving === 'rightToLeft') {
-            this.x -= this.boostMoveX;
+            this.x -= this.boostX;
         }
         if (this.isMoving === 'normal') {
             if (this.x === 25) {
-                this.y += this.moveY
+                this.y += this.velocityY
             }
             if (this.y === 425) {
                 this.y === 425;
-                this.x += this.moveX
+                this.x += this.velocityX
             }
             if (this.x === 725) {
                 this.x === 725;
-                this.y -= this.moveY
+                this.y -= this.velocityY
             }
             if (this.y === 25) {
                 this.y === 425;
-                this.x -= this.moveX;
+                this.x -= this.velocityX;
             }
 
         }
@@ -98,7 +99,6 @@ class Player {
     }
 
     jump() {
-        console.log('jumping')
         if (this.y === 25) {
             this.isMoving = 'topToBottom'
         } else if (this.y === 425) {

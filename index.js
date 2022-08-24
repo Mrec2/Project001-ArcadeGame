@@ -1,5 +1,4 @@
-onload = () => {
-    Game.init();
-}
+onload = () => Game.init();
+
 
 
