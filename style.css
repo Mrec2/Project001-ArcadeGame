@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Pinstripe&family=Silkscreen&display=swap');
 
-/* font-family: 'Aboreto', cursive;
-font-family: 'Alumni Sans Pinstripe', sans-serif;
-font-family: 'Silkscreen', cursive; */
-
-
 body,
 html {
     padding: 0;
@@ -62,6 +57,13 @@ canvas {
 .ob-container h1 {
     color: coral;
     margin: 10px;
+    font-size: 60px;
+}
+
+.ob-container h1:hover {
+    color: white;
+    font-size: 80px;
+    text-shadow: 1px 1px #ffe191;
 }
 
 .ob-container h2 {
@@ -90,11 +92,6 @@ canvas {
     color: black;
     border-radius: 25px;
 }
-
-/* .ob-container h1 {
-    padding: 0;
-    margin: 0;
-} */
 
 .ob-container h6 span {
     font-size: 12px;
