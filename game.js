@@ -14,6 +14,8 @@ const Game = {
     playerImg: 'img/player2.png',
     isMoving: "normal",
     clockWise: true,
+    live: 3,
+    liveHTML: undefined,
 
     obstacles: [],
     DeathByObs: false,
@@ -23,11 +25,16 @@ const Game = {
     coins: [],
     coinImg: 'img/coin.png',
 
+    soundObs: undefined,
+    soundCoins: undefined,
+    soundJump: undefined,
+
     init() {
         this.canvas = document.getElementById('canvas');
         this.ctx = canvas.getContext('2d');
         this.setDimensions();
         this.start();
+
     },
 
     setDimensions() {
@@ -41,8 +48,11 @@ const Game = {
 
     start() {
         this.createAll();
+        clearInterval(this.interval);
         this.interval = setInterval(() => {
+
             this.counter++;
+            this.lives();
             this.timer();
             if (this.counter === 67) {
                 this.secs -= 1;
@@ -55,6 +65,7 @@ const Game = {
             this.obstacles.forEach(obstacle => this.checkObsCollision(obstacle));
             this.coins.forEach(coin => this.checkCoinsCollision(coin));
             this.gameOver()
+            this.gameWin();
             // this.checkObsCollision(this.obstacles);
             //this.checkCollision();
         }, 1000 / this.fps);
@@ -65,6 +76,10 @@ const Game = {
         this.player = new Player(this.playerImg, this.ctx);
         this.createInitialCoins();
         this.createObstacles();
+        this.soundObs = new Audio("./sounds/lose.mp3");
+        this.soundCoins = new Audio("./sounds/bite-coin.mp3");
+        this.soundJump = new Audio("./sounds/jump.mp3");
+
     },
 
     createObstacles() {
@@ -75,20 +90,16 @@ const Game = {
     },
 
     createInitialCoins() {
-        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 100, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 330, 150, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 380, 150, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 280, 150, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 430, 150, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 480, 150, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 100, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 350, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 280, 320, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 330, 320, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 380, 320, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 430, 320, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 480, 320, 20, 20));
-        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 350, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 75, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 310, 350, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 350, 180, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 390, 220, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 390, 260, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 75, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 75, 405, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 430, 350, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 470, 120, 20, 20));
+        this.coins.push(new Coin(this.coinImg, this.ctx, 705, 405, 20, 20));
     },
 
     drawAll() {
@@ -99,27 +110,31 @@ const Game = {
     },
 
     gameOver() {
-        if (this.DeathByObs) {
-            alert("Perdiste OBSjajajaja")
-            clearInterval(this.interval);
-            location.reload()
-
-            //location.href = "./onboard.html" ---> tercer html game over viejita
-
-
-        }
+        if (this.live === 0) location.href = "./gameover.html";
+        // if (this.DeathByObs) {
+        //alert("Perdiste OBSjajajaja")
+        //clearInterval(this.interval);
+        //location.reload()
+        // }
         if (this.secs === -1) {
-            alert("Perdiste jajajaja")
-
-            clearInterval(this.interval);
-            location.reload() // PREFERIBLEMENTE VOLVER A LA PANTALLA DE INICIO
-
+            //alert("Perdiste jajajaja")
+            //clearInterval(this.interval);
+            //location.reload() // PREFERIBLEMENTE VOLVER A LA PANTALLA DE INICIO
+            location.href = "./gameover.html";
         }
+    },
+    gameWin() {
+        if (this.coins.length === 0) location.href = "./youwin.html";
     },
 
     timer() {
         this.chrono = document.getElementById("chrono");
         this.chrono.innerHTML = this.secs.toString();
+    },
+
+    lives() {
+        this.liveHTML = document.getElementById("live");
+        this.liveHTML.innerHTML = "Lives: " + this.live.toString();
     },
 
     checkCollision() {
@@ -136,6 +151,10 @@ const Game = {
             setTimeout(this.gameOver, 30); //APAÑO
             DeathByObs = true;
             obstacle.crash = true;
+            this.live--;
+            this.soundObs.play();
+            this.init();
+
         }
     },
 
@@ -148,6 +167,7 @@ const Game = {
             && !coin.crash) {
             const index = this.coins.indexOf(coin);
             this.coins.splice(index, 1);
+            this.soundCoins.play();
             coin.crash = true;
         }
     },
@@ -157,12 +177,12 @@ const Game = {
             switch (e.keyCode) {
                 case 32:
                     Game.player.jump();
+                    this.soundJump.play();
                     break;
             }
             Game.clockWise ? Game.clockWise = false : Game.clockWise = true
         })
-    }
-
+    },
 }
 
 

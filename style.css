@@ -60,12 +60,6 @@ canvas {
     font-size: 60px;
 }
 
-.ob-container h1:hover {
-    color: white;
-    font-size: 80px;
-    text-shadow: 1px 1px #ffe191;
-}
-
 .ob-container h2 {
     color: coral;
     font-size: 16px;
@@ -113,6 +107,71 @@ canvas {
 }
 
 .ob-container a:hover {
+    background-color: white;
+    padding: 15px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.go-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./img/bg-gameover.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: greenyellow;
+    font-family: 'Aboreto', cursive;
+    font-size: 30px;
+}
+
+.go-container div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.go-container div h1 {
+    font-size: 120px;
+    -webkit-text-stroke: 2px black;
+    -webkit-text-fill-color: white;
+    font-family: 'Silkscreen', cursive;
+    margin: 40px 0 0;
+}
+
+.go-container div h2 {
+    font-size: 20px;
+    color: white;
+    font-family: 'Silkscreen', cursive;
+    margin: 0;
+}
+
+.go-container a {
+    padding: 15px 40px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Silkscreen', cursive;
+    transition: all .5s ease;
+    margin: 20px 0px 60px;
+    background-color: white;
+}
+
+.go-container a:hover {
     background-color: white;
     padding: 15px;
     color: black;
