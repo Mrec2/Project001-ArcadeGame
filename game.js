@@ -111,15 +111,7 @@ const Game = {
 
     gameOver() {
         if (this.live === 0) location.href = "./gameover.html";
-        // if (this.DeathByObs) {
-        //alert("Perdiste OBSjajajaja")
-        //clearInterval(this.interval);
-        //location.reload()
-        // }
         if (this.secs === -1) {
-            //alert("Perdiste jajajaja")
-            //clearInterval(this.interval);
-            //location.reload() // PREFERIBLEMENTE VOLVER A LA PANTALLA DE INICIO
             location.href = "./gameover.html";
         }
     },
@@ -137,10 +129,6 @@ const Game = {
         this.liveHTML.innerHTML = "Lives: " + this.live.toString();
     },
 
-    checkCollision() {
-        // playerX, playerY === coinX
-    },
-
     checkObsCollision(obstacle) {
 
         if (this.player.x < obstacle.obsX + obstacle.obsWidth
@@ -148,7 +136,6 @@ const Game = {
             && this.player.y < obstacle.obsY + obstacle.obsHeight
             && this.player.y + this.player.height > obstacle.obsY
             && !obstacle.crash) {
-            setTimeout(this.gameOver, 30); //APAÑO
             DeathByObs = true;
             obstacle.crash = true;
             this.live--;

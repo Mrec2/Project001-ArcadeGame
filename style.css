@@ -91,8 +91,8 @@ canvas {
     font-size: 12px;
 }
 
-.names {
-    font-size: 22px !important;
+#names {
+    font-size: 22px;
 }
 
 .ob-container a {
@@ -181,4 +181,33 @@ canvas {
     font-size: 15px;
     cursor: pointer;
     transition: all .5s ease;
+}
+
+#myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: -1;
+}
+
+#youwin {
+    position: relative;
+    background-image: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./img/you-win0ovrlay.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+#youwin a {
+    z-index: 10;
 }
